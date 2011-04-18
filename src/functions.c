@@ -120,7 +120,7 @@ int my_copyfromfs(char *source,char *dest) {
   FILE *out=fopen(dest,"w");
   int size=file_system->inode_list[in].filesize;
   char *data=my_read(source,0,size);
-  fprintf(out,"%s",data);
+  fprintf(out,"%s\n",data);
   return 0;
 }
 
@@ -292,5 +292,15 @@ int my_ls() {
 	   file_system->inode_list[ind].filetype==NORMAL?file_system->inode_list[ind].filesize:file_system->inode_list[ind].filesize-2,\
 	   file_system->inode_list[ind].filetype==NORMAL?"FILE":"DIR");
   }
+  return 0;
+}
+
+int my_move(char *source,char *dest) {
+  my_create(dest);
+  int in=my_open(source,'r');
+  int size=file_system->inode_list[in].filesize;
+  char *data=my_read(source,0,size);
+  my_write(dest,data);
+  my_delete(source);
   return 0;
 }

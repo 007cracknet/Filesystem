@@ -16,5 +16,6 @@ extern int my_rmdir(char *name);
 extern int my_chdir(char *name);
 extern int my_pwd();
 extern int my_ls();
+extern int my_move(char *dest,char *source);
 
 #endif
