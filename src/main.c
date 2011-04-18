@@ -119,7 +119,8 @@ int main() {
       my_rmdir(argv[1]);
     }
     else if(!strcmp(argv[0],"chdir")||!strcmp(argv[0],"cd")) {
-      if(my_chdir(argv[1])==-1)
+      if(argc!=2) printf("Usage: cd DIR\n");
+      else if(my_chdir(argv[1])==-1)
 	printf("%s : already at root\n",argv[0]);;
       }
     else if(!strcmp(argv[0],"pwd")) {
