@@ -120,7 +120,8 @@ int my_copyfromfs(char *source,char *dest) {
   FILE *out=fopen(dest,"w");
   int size=file_system->inode_list[in].filesize;
   char *data=my_read(source,0,size);
-  fprintf(out,"%s\n",data);
+  fprintf(out,"%s",data);
+  fclose(out);
   return 0;
 }
 
@@ -137,6 +138,7 @@ int my_copytofs(char *source,char *dest) {
     ch[1]='\0';
     my_write(dest,ch);
   }
+  fclose(in);
   return 0;
 }
 
